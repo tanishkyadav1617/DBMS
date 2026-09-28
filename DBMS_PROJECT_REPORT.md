@@ -7,6 +7,8 @@
 **Application / Business Layer:** Python Flask REST API, Flask-JWT-Extended  
 **Database Storage Layer:** MySQL 8.0 (InnoDB Engine) hosted on **FreeDB Cloud Infrastructure** (`sql.freedb.tech:3306`)  
 **Active Database:** `freedb_whN5yPi4`  
+**Database Server Release:** MySQL `8.0.46-0ubuntu0.22.04.4 - (Ubuntu)` (Ubuntu 22.04 LTS)  
+**Protocol & Encoding:** Protocol Version 10, UTF-8 Unicode (`utf8mb4`)  
 **Repository:** [DBMS_Projest](file:///Users/tanishkyadav/Desktop/DBMS_Projest)  
 
 ---
@@ -163,17 +165,21 @@ Defines the low-level disk layout on the storage subsystem:
 # 4. Database Administration (DBA), Cloud Hosting & Security
 
 ### 4.1 Production Cloud Database Configuration on FreeDB
-The IDS database is hosted in the cloud on **FreeDB** (`sql.freedb.tech`):
+The IDS database is hosted in the cloud on **FreeDB** (`sql.freedb.tech`), verified live via the phpMyAdmin administrative dashboard:
 
-| Parameter | Configuration Value |
-|---|---|
-| **Host** | `sql.freedb.tech` |
-| **Port** | `3306` (Standard MySQL Protocol) |
-| **Database Name** | `freedb_whN5yPi4` |
-| **Database User** | `u_id8qv6` |
-| **Engine** | InnoDB (ACID compliant, transaction safe) |
-| **Character Set / Collation** | `utf8mb4` / `utf8mb4_unicode_ci` (Full Unicode & Emoji support) |
-| **Network Security** | Remote TCP/IP with credentials isolated in server-side `.env` |
+| Parameter | Configuration Value | Telemetry & Operational Details |
+|---|---|---|
+| **Server Host** | `sql.freedb.tech via TCP/IP` | Remote cloud MySQL server accessible via TCP/IP network protocol |
+| **Server Type** | `MySQL` | Enterprise relational database management system (RDBMS) |
+| **Server Version** | `8.0.46-0ubuntu0.22.04.4 - (Ubuntu)` | Official MySQL 8.0 distribution on Ubuntu 22.04 LTS |
+| **Protocol Version** | `10` | MySQL client/server network wire protocol version 10 |
+| **User & Client Host** | `u_id8qv6@107.172.142.167` | Database tenant identity bound to cloud host cluster |
+| **Active Database** | `freedb_whN5yPi4` | Production relational schema containing IDS relations |
+| **Storage Engine** | `InnoDB` | Default ACID-compliant engine with MVCC, WAL, and row-level locking |
+| **Server Charset / Collation** | `UTF-8 Unicode (utf8mb4)` | Full 4-byte UTF-8 encoding support for international text & emojis |
+| **Port** | `3306` | Standard MySQL TCP/IP port |
+| **Connection Security** | Remote TCP/IP | Connection credentials isolated in `.env` (bypassing local daemon need) |
+
 
 ### 4.2 DBA Responsibilities in the IDS Project
 1. **Schema Initialization & DDL Deployment:** Deploying base relations, indexes, and initial catalog seed data.
