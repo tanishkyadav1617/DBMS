@@ -12,6 +12,11 @@ FLASK_HOST  = os.getenv('FLASK_HOST', '0.0.0.0')
 FLASK_PORT  = int(os.getenv('FLASK_PORT', 8000))
 FLASK_DEBUG = os.getenv('FLASK_DEBUG', 'false').lower() in ('true', '1', 't')
 
+# ── SQL Telemetry (DBMS Demo Feature) ───────────────────────────────────────
+# When True, every cur.execute() call is recorded and returned in the
+# X-Executed-Queries response header (visible in browser DevTools).
+SHOW_SQL_QUERIES = os.getenv('SHOW_SQL_QUERIES', 'true').lower() in ('true', '1', 't')
+
 # ── Database Connection ─────────────────────────────────────────────────────
 # Primary DB_* keys with fallback to legacy MYSQL_* keys for full backwards compatibility
 DB_HOST     = os.getenv('DB_HOST') or os.getenv('MYSQL_HOST', 'localhost')

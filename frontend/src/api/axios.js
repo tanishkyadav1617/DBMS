@@ -22,7 +22,7 @@ const api = axios.create({
   },
 });
 
-// Attach JWT to every request
+// ── Request interceptor: attach JWT ──────────────────────────────────────────
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) {
@@ -31,9 +31,23 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// On 401 clear storage and redirect to login (except during authentication request)
+// ── Response interceptor: CORS 401 guard + SQL telemetry dispatch ────────────
 api.interceptors.response.use(
-  (res) => res,
+  (res) => {
+    // Read X-Executed-Queries on every successful response and broadcast it
+    try {
+      const raw = res.headers['x-executed-queries'];
+      if (raw) {
+        const queries = JSON.parse(decodeURIComponent(raw));
+        window.dispatchEvent(
+          new CustomEvent('sql-queries-executed', { detail: queries })
+        );
+      }
+    } catch (_) {
+      // Silently ignore parse / decode errors so real responses are never affected
+    }
+    return res;
+  },
   (err) => {
     if (err.response?.status === 401 && !err.config?.url?.includes('/api/login')) {
       localStorage.clear();

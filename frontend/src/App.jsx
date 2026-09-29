@@ -6,10 +6,14 @@ import Login from './pages/Login';
 import CustomerDashboard from './pages/CustomerDashboard';
 import ManagerDashboard from './pages/ManagerDashboard';
 import DeliveryDashboard from './pages/DeliveryDashboard';
+import SqlQueryToast from './components/SqlQueryToast';
+
 
 export default function App() {
   return (
     <AuthProvider>
+      {/* SQL Telemetry Toast — mounted at root so it overlays all pages */}
+      <SqlQueryToast />
       <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -43,3 +47,4 @@ export default function App() {
     </AuthProvider>
   );
 }
+
