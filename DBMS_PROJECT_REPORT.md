@@ -15,7 +15,7 @@
 | --- | --- | --- |
 | Sarthak Dutta | 25U023006 | JavaScript, deployment and presentation |
 | Bharat Janu | 25U023007 | Database |
-| Tanishk Yadav | 25U023009 | Backend |
+| Tanishk Yadav | 25U023008 | Backend |
 | Mohammad Farhaan | 25U023010 | HTML, CSS and this report |
 
 **Under the guidance of:** Dr. Priyankar Chaudhary, Mentor and Faculty, Department of CSE
