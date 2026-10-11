@@ -1,6 +1,6 @@
 <h1 align="center">Inventory &amp; Delivery Management System</h1>
 <p align="center"><em>A role-based web application built on React, Flask and MySQL</em></p>
-<p align="center"><strong>DBMS Project Report</strong><br>Department of Computer Science and Engineering (CSE)</p>
+<p align="center"><strong>DBMS Project Report</strong><br>Department of Computer Science and Engineering (CSE)<br>Indian Institute of Information Technology, Bhopal<br>Academic Year 2026 - 2027</p>
 
 <p align="center">
   <a href="https://dbms-plum.vercel.app">Live demo</a> &middot;
@@ -15,7 +15,7 @@
 | --- | --- | --- |
 | Sarthak Dutta | 25U023006 | JavaScript, deployment and presentation |
 | Bharat Janu | 25U023007 | Database |
-| Tanishq Yadav | 25U023009 | Backend |
+| Tanishk Yadav | 25U023009 | Backend |
 | Mohammad Farhaan | 25U023010 | HTML, CSS and this report |
 
 **Under the guidance of:** Dr. Priyankar Chaudhary, Mentor and Faculty, Department of CSE
@@ -104,7 +104,7 @@ The project was developed by a team of four students of the Department of Comput
 | --- | --- | --- |
 | Sarthak Dutta | 25U023006 | JavaScript, deployment and presentation |
 | Bharat Janu | 25U023007 | Database |
-| Tanishq Yadav | 25U023009 | Backend |
+| Tanishk Yadav | 25U023009 | Backend |
 | Mohammad Farhaan | 25U023010 | HTML, CSS and this report |
 
 ### 1.6 Why a DBMS and Not Files or Spreadsheets
@@ -194,7 +194,7 @@ To run the project locally a dual-core computer with 4 GB of RAM and about 500 M
 
 IDS separates presentation, application logic and data. The browser never talks to the database directly; it calls the Flask API with a token, and only the API holds the database credentials. This keeps business rules (stock checks, role checks, dispatch rules) in one trusted place.
 
-<p align="center"><img src="report-images/arch.png" alt="Three-tier architecture of IDS" width="520"></p>
+<p align="center"><img src="arch.png" alt="Three-tier architecture of IDS" width="520"></p>
 
 <p align="center"><em>Figure 4.1: Three-tier architecture of IDS</em></p>
 
@@ -216,13 +216,13 @@ On the front end, `ProtectedRoute` redirects a user who opens another role's pag
 
 The context diagram shows IDS as one process exchanging information with its three external entities.
 
-<p align="center"><img src="report-images/dfd0.png" alt="Level 0 DFD (context diagram)" width="720"></p>
+<p align="center"><img src="dfd0.png" alt="Level 0 DFD (context diagram)" width="720"></p>
 
 <p align="center"><em>Figure 4.2: Level 0 DFD (context diagram)</em></p>
 
 Level 1 breaks the system into four processes. Each reads or writes specific tables, which shows clearly which part of the system touches which data.
 
-<p align="center"><img src="report-images/dfd1.png" alt="Level 1 DFD showing processes and data stores" width="600"></p>
+<p align="center"><img src="dfd1.png" alt="Level 1 DFD showing processes and data stores" width="600"></p>
 
 <p align="center"><em>Figure 4.3: Level 1 DFD showing processes and data stores</em></p>
 
@@ -230,7 +230,7 @@ Level 1 breaks the system into four processes. Each reads or writes specific tab
 
 Every order moves through a fixed set of states. Each transition is performed by exactly one role and is implemented as a single guarded `UPDATE` (Section 7.3).
 
-<p align="center"><img src="report-images/state.png" alt="Order state transition diagram" width="320"></p>
+<p align="center"><img src="state.png" alt="Order state transition diagram" width="320"></p>
 
 <p align="center"><em>Figure 4.4: Order state transition diagram</em></p>
 
@@ -251,7 +251,7 @@ Every order moves through a fixed set of states. Each transition is performed by
 
 IDS has four entities. **users** holds all three kinds of user in one table, since they share the same attributes; the role comes from the e-mail domain and only delivery partners have a `vehicle_type`. **products** is the catalogue and the stock ledger. **orders** is the order header: who ordered, where it goes, how it is dispatched and its status. **order_items** holds the lines of an order and is the associative entity that resolves the many-to-many relationship between orders and products.
 
-<p align="center"><img src="report-images/er.png" alt="ER diagram of IDS (crow's foot notation)" width="520"></p>
+<p align="center"><img src="er.png" alt="ER diagram of IDS (crow's foot notation)" width="520"></p>
 
 <p align="center"><em>Figure 5.1: ER diagram of IDS (crow's foot notation)</em></p>
 
@@ -544,7 +544,7 @@ ORDER BY dpi DESC;
 
 Placing an order changes several tables and must not leave a half-finished result. The endpoint therefore runs the whole checkout inside one transaction.
 
-<p align="center"><img src="report-images/tx.png" alt="Checkout transaction flow in place_order" width="420"></p>
+<p align="center"><img src="tx.png" alt="Checkout transaction flow in place_order" width="420"></p>
 
 <p align="center"><em>Figure 7.1: Checkout transaction flow in place_order</em></p>
 
@@ -616,49 +616,49 @@ The React application and the Flask API are deployed on Vercel and use a cloud-h
 
 The following screenshots were taken from the deployed application. The SQL Executed pop-up in the lower right corner of most screens is the telemetry feature described in Chapter 7.
 
-<p align="center"><img src="report-images/s_login.png" alt="Login page with one-click demo accounts for each role" width="720"></p>
+<p align="center"><img src="s_login.png" alt="Login page with one-click demo accounts for each role" width="720"></p>
 
 <p align="center"><em>Figure 8.1: Login page with one-click demo accounts for each role</em></p>
 
 The login page shows the role rules (`@manager.com`, `@delpart.com`, any other domain for customers) and offers a registration link.
 
-<p align="center"><img src="report-images/s_browse.png" alt="Customer dashboard: product catalogue with category filter, cart and Buy Now" width="720"></p>
+<p align="center"><img src="s_browse.png" alt="Customer dashboard: product catalogue with category filter, cart and Buy Now" width="720"></p>
 
 <p align="center"><em>Figure 8.2: Customer dashboard: product catalogue with category filter, cart and Buy Now</em></p>
 
 The catalogue lists price, unit, stock and unit weight for each product. The pop-up shows the query behind this screen: `SELECT * FROM products ORDER BY category, product_name`.
 
-<p align="center"><img src="report-images/s_myorders.png" alt="Customer dashboard: My Orders" width="720"></p>
+<p align="center"><img src="s_myorders.png" alt="Customer dashboard: My Orders" width="720"></p>
 
 <p align="center"><em>Figure 8.3: Customer dashboard: My Orders</em></p>
 
 The query shown is the LEFT JOIN of `orders`, `products` and `users` filtered by `customer_id`. The screenshot was taken from an account with no orders, so the empty state is displayed.
 
-<p align="center"><img src="report-images/s_inventory.png" alt="Manager dashboard: Inventory tab" width="720"></p>
+<p align="center"><img src="s_inventory.png" alt="Manager dashboard: Inventory tab" width="720"></p>
 
 <p align="center"><em>Figure 8.4: Manager dashboard: Inventory tab</em></p>
 
 The manager can filter by category, add products, and edit or delete each row. The sidebar shows the five manager tabs: Pending Review, Inventory, Users, All Orders and DPI Leaderboard.
 
-<p align="center"><img src="report-images/s_users.png" alt="Manager dashboard: Users tab" width="720"></p>
+<p align="center"><img src="s_users.png" alt="Manager dashboard: Users tab" width="720"></p>
 
 <p align="center"><em>Figure 8.5: Manager dashboard: Users tab</em></p>
 
 Users are listed with role, vehicle type and status. One customer is shown as **Suspended** with an **Activate** button, demonstrating the account control feature.
 
-<p align="center"><img src="report-images/s_dpi.png" alt="Manager dashboard: DPI leaderboard" width="720"></p>
+<p align="center"><img src="s_dpi.png" alt="Manager dashboard: DPI leaderboard" width="720"></p>
 
 <p align="center"><em>Figure 8.6: Manager dashboard: DPI leaderboard</em></p>
 
 The leaderboard shows delivered and failed counts, total kilometres and the DPI score, with the formula printed under the table. Both drivers show 0.0 because no deliveries had been completed when the screenshot was taken.
 
-<p align="center"><img src="report-images/s_board.png" alt="Delivery dashboard: Open Delivery Board" width="720"></p>
+<p align="center"><img src="s_board.png" alt="Delivery dashboard: Open Delivery Board" width="720"></p>
 
 <p align="center"><em>Figure 8.7: Delivery dashboard: Open Delivery Board</em></p>
 
 The pop-up shows the two queries behind the board: first the driver's vehicle type, then the list of Pending Delivery orders that are General, directly assigned to this driver, or Exclusive for this vehicle type.
 
-<p align="center"><img src="report-images/s_deliveries.png" alt="Delivery dashboard: My Deliveries" width="720"></p>
+<p align="center"><img src="s_deliveries.png" alt="Delivery dashboard: My Deliveries" width="720"></p>
 
 <p align="center"><em>Figure 8.8: Delivery dashboard: My Deliveries</em></p>
 
