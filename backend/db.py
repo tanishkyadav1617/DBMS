@@ -63,6 +63,7 @@ class _TrackedConnection:
     def commit(self):     self._conn.commit()
     def rollback(self):   self._conn.rollback()
     def close(self):      self._conn.close()
+    def begin(self):      self._conn.begin()
 
 
 def get_connection():
